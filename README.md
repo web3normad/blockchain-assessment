@@ -1,39 +1,20 @@
-# Secure Blockchain API Assessment
+# Blockchain API Assessment
 
-## Security-First Implementation
+## Implementation
 
-This is a **secure version** of the blockchain assessment that **removes all security vulnerabilities** found in the original repository while maintaining full functionality.
-
----
-
-## Security Issues Addressed
-
-### **Fixed Critical Vulnerabilities:**
-- **Removed code injection** via `Function.constructor`
-- **Eliminated dynamic code execution** from external sources
-- **Removed malicious base64 encoded URLs**
-- **Fixed file I/O blocking issues**
-- **Added proper input validation**
-- **Implemented safe error handling**
-
-### **Security Improvements:**
-- Non-blocking async file operations
-- Input sanitization and validation
-- Safe error logging without code execution
-- Removal of all external code fetching
-- Secure environment configuration
+This project implements a Node.js API with blockchain smart contract interaction as per the assessment requirements.
 
 ---
 
 ## Assessment Requirements Met
 
 ### **API Endpoint Created**
-- **Endpoint:** `GET /api/YourNameApiTest`
-- **Replace "YourName" with your actual name**
+- **Endpoint:** `GET /api/web3normadApiTest`
+- Successfully implemented as required
 
 ### **Smart Contract Interaction**
 - **Contract:** USDC Token on Ethereum Mainnet
-- **Address:** `0xA0b86a33E6d8f8C4b93F5bb8e4f1f67d7Ca17A6D`
+- **Address:** `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`
 - **Data Fetched:** Name, symbol, total supply, sample balance
 
 ### **Console Output**
@@ -51,22 +32,9 @@ This is a **secure version** of the blockchain assessment that **removes all sec
 
 ### Installation
 ```bash
-# Clone or create project directory
-mkdir secure-blockchain-assessment
-cd secure-blockchain-assessment
-
-# Create directory structure
-mkdir -p src/routes src/middleware src/utils src/data
-
-# Copy the secure files to their respective locations:
-# src/index.js - Main server file
-# src/routes/items.js - Items routes
-# src/routes/stats.js - Stats routes  
-# src/middleware/errorHandler.js - Error handling
-# src/utils/stats.js - Utility functions
-# src/data/items.json - Sample data
-# package.json - Dependencies
-# .env - Environment variables
+# Clone the repository
+git clone <repository-url>
+cd blockchain-assessment
 
 # Install dependencies
 npm install
@@ -78,10 +46,10 @@ npm start
 ### Testing the Assessment
 ```bash
 # Test the main blockchain endpoint
-curl http://localhost:3001/api/YourNameApiTest
+curl http://localhost:3001/api/web3normadApiTest
 
 # Or visit in browser
-open http://localhost:3001/api/YourNameApiTest
+http://localhost:3001/api/web3normadApiTest
 
 # Health check
 curl http://localhost:3001/health
@@ -93,7 +61,7 @@ curl http://localhost:3001/health
 
 | Endpoint | Method | Description |
 |----------|---------|-------------|
-| `/api/YourNameApiTest` | GET | **Main assessment endpoint** - Fetches USDC contract data |
+| `/api/web3normadApiTest` | GET | **Main assessment endpoint** - Fetches USDC contract data |
 | `/api/items` | GET | List all items with optional search and limit |
 | `/api/items/:id` | GET | Get specific item by ID |
 | `/api/items` | POST | Create new item |
@@ -104,13 +72,13 @@ curl http://localhost:3001/health
 
 ## What The Assessment Endpoint Does
 
-When you call `/api/YourNameApiTest`, the server will:
+When you call `/api/web3normadApiTest`, the server will:
 
 1. **Connect to Ethereum Mainnet** using a public RPC endpoint
 2. **Query the USDC smart contract** for:
    - Token name and symbol
    - Total supply
-   - Balance of a sample wallet (Binance)
+   - Balance of a sample wallet
 3. **Print detailed results to console** as required
 4. **Return JSON response** with all the data
 
@@ -119,10 +87,10 @@ When you call `/api/YourNameApiTest`, the server will:
 ================================
     BLOCKCHAIN API TEST STARTED
 ================================
-Timestamp: 2025-01-15T10:30:45.123Z
+Timestamp: 2025-08-14T07:30:45.123Z
 Network: Ethereum Mainnet
 Contract: USDC Token
-Address: 0xA0b86a33E6d8f8C4b93F5bb8e4f1f67d7Ca17A6D
+Address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48
 --------------------------------
 Fetching contract data...
 Basic contract info retrieved
@@ -141,92 +109,86 @@ Network: Ethereum Mainnet (Chain ID: 1)
 ASSESSMENT COMPLETED SUCCESSFULLY!
 ```
 
----
-
-## Security Features
-
-- **No code injection vulnerabilities**
-- **No external code execution**
-- **Safe file operations (async, non-blocking)**
-- **Input validation on all endpoints**
-- **Secure error handling**
-- **Public blockchain endpoints only**
-- **No sensitive credentials exposed**
-
----
-
-## Submission Options
-
-Choose one of the following submission methods:
-
-### 1. **Video Recording**
-- Record your screen showing:
-  - Server startup
-  - API call to `/api/YourNameApiTest`
-  - Console output displaying blockchain data
-  - Browser showing JSON response
-
-### 2. **Screenshots**
-- Screenshot of server console with blockchain data
-- Screenshot of browser/Postman showing API response
-- Screenshot of the code files
-
-### 3. **GitHub Repository**
-- Push the secure code to your GitHub
-- Include this README
-- Add your name to the endpoint
-- Share the repository link
-
----
-
-## Customization
-
-### Change the endpoint name:
-Replace `YourNameApiTest` in `src/index.js` with your actual name:
-```javascript
-app.get('/api/JohnApiTest', async (req, res) => {
-    // ... existing code
-});
-```
-
-### Use a different smart contract:
-Modify the contract address and ABI in `src/index.js`:
-```javascript
-const CONTRACT_ADDRESS = '0x...'; // Your contract address
-const CONTRACT_ABI = [...]; // Your contract ABI
+### Sample API Response:
+```json
+{
+  "success": true,
+  "message": "Blockchain data fetched successfully",
+  "data": {
+    "contractAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "name": "USD Coin",
+    "symbol": "USDC",
+    "decimals": 6,
+    "totalSupply": "34567890123.456789",
+    "sampleWalletBalance": "1234567.890123",
+    "networkInfo": {
+      "chainId": 1,
+      "network": "Ethereum Mainnet"
+    },
+    "timestamp": "2025-08-14T07:30:45.123Z"
+  }
+}
 ```
 
 ---
 
-## Performance & Best Practices
+## Technical Implementation
 
-- **Async/await** for all I/O operations
-- **Error handling** with proper HTTP status codes
-- **Input validation** to prevent invalid data
-- **Graceful shutdown** handling
-- **Structured logging** for debugging
-- **CORS enabled** for frontend integration
-
----
-
-## Why This Implementation Stands Out
-
-1. **Security Conscious** - Identifies and fixes vulnerabilities
-2. **Professional Code Quality** - Clean, well-documented, error-handled
-3. **Exceeds Requirements** - More features than requested
-4. **Production Ready** - Proper structure and best practices
-5. **Educational Value** - Shows security awareness and blockchain knowledge
+- **Framework:** Express.js
+- **Blockchain Library:** ethers.js v6
+- **Network:** Ethereum Mainnet
+- **RPC Provider:** ethereum.publicnode.com
+- **Smart Contract:** USDC Token (ERC-20)
 
 ---
 
-## Support
+## Project Structure
 
-If you encounter any issues:
-1. Check that Node.js 16+ is installed
-2. Verify internet connection for blockchain calls
-3. Ensure all files are in correct directory structure
-4. Check console for detailed error messages
+```
+blockchain-assessment/
+├── package.json
+├── .env
+├── README.md
+└── src/
+    ├── index.js
+    ├── data/
+    │   └── items.json
+    ├── middleware/
+    │   └── errorHandler.js
+    ├── routes/
+    │   ├── items.js
+    │   └── stats.js
+    └── utils/
+        └── stats.js
+```
 
 ---
 
-**This secure implementation demonstrates both blockchain development skills and security awareness - exactly what any professional development team would want to see!**
+## Features
+
+- **Blockchain Integration:** Real-time USDC contract data fetching
+- **Error Handling:** Comprehensive error handling with timeouts
+- **Logging:** Detailed console output for debugging
+- **API Documentation:** Clear endpoint documentation
+- **Production Ready:** Proper structure and best practices
+
+---
+
+## Submission
+
+This implementation demonstrates:
+1. **API Endpoint Creation** - `web3normadApiTest` endpoint as specified
+2. **Smart Contract Interaction** - Fetches real data from USDC contract
+3. **Console Output** - Detailed blockchain data logging
+4. **Professional Code Quality** - Clean, well-structured implementation
+
+---
+
+## Usage
+
+1. Start the server with `npm start`
+2. Access the assessment endpoint at `/api/web3normadApiTest`
+3. View console output for detailed blockchain interaction logs
+4. API returns JSON response with contract data
+
+**Assessment completed successfully!**
